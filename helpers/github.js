@@ -1,7 +1,7 @@
 const axios = require('axios');
 const config = require('../config.js');
 
-module.exports = (username = 'JeromeMTR', callback = ()=> {console.log('no callback provided')}) => {
+module.exports = (username = 'JeromeMTR', callback = () => {}) => {
   // TODO - Use the axios module to request repos for a specific
   // user from the github API
 

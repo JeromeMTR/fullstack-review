@@ -9,6 +9,7 @@ let repoSchema = mongoose.Schema({
   },
   username: String,
   repoName: String,
+  repoLink: String,
   size: Number
 });
 
@@ -22,21 +23,25 @@ let save = (data, callback=()=>{}) => {
     data = new Repo(data); // instantiate data coming from api
     data.save(err => { // save instaitated data into database
       if (err) {
-        callback(err);
+        data
         return;
       }
     })
 }
 
-let get = (callback=()=>{console.log('no callback provided')}) => {
+let get = (callback= () => {}) => {
   // var allData = Repo.find({}, (err, docs) => {
   //   if (err) {
   //     callback(err);
   //     return;
   //   }
-  //   console.log(docs.length);
+  //   console.log(docs);
   //   callback(null, docs);
   // });
+  // async function start() {
+  //   await Repo.deleteMany({});
+  // }
+  // start();
   Repo.find({})
     .sort({size: 'desc'})
     .limit(25)
@@ -44,6 +49,7 @@ let get = (callback=()=>{console.log('no callback provided')}) => {
       if (err) {
         callback(err);
       }
+      console.log(docs.length);
       callback(null, docs)
     })
 }

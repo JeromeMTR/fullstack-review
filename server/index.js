@@ -29,9 +29,9 @@ app.post('/repos', function (req, res) {
         repoId: data[i].id,
         username: data[i].owner.login,
         repoName: data[i].name,
+        repoLink: data[i]['html_url'],
         size: data[i].size
       }
-      console.log('repos',currentRepo);
       db.save(currentRepo, (err) => {
         if (err) {
           res.status(403).end();
